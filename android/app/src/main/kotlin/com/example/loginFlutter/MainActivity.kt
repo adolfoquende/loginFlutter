@@ -1,0 +1,6 @@
+package com.example.loginFlutter
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
