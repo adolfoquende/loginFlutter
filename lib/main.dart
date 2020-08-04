@@ -158,7 +158,7 @@ class LoginPage extends StatelessWidget {
               height: 40,
               child: FlatButton(
                 child: Text(
-                  "Registar-se",
+                  "Regitar-se",
                   textAlign: TextAlign.center,
                 ),onPressed: (){},
               ),
