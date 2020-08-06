@@ -31,8 +31,8 @@ class LoginPage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             SizedBox(
-              width: 148,
-              height: 148,
+              width: 400,
+              height: 120,
               child: Image.asset("assets/logo.png"),
             ),
             SizedBox(
