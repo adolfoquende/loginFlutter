@@ -1,4 +1,4 @@
-name: loginFlutter
+name: FlutterChallenge
 description: I'm creating a login flutter
 
 # The following line prevents the package from being accidentally published to
@@ -21,7 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  curved_navigation_bar:
+  auto_size_text: ^2.1.0 #Dependencia que serve para redimensionar textos automaticamente
+  curved_navigation_bar: #Dependencia para criar menus curvos animados
   flutter:
     sdk: flutter
 

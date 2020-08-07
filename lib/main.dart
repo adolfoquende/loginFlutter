@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'Calculadora/screens/calculator.dart';
 import 'Challenges/CurvedNavigation.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Calculator());
 }
 
 class MyApp extends StatelessWidget {
