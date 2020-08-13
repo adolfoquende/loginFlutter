@@ -3,7 +3,8 @@ import 'package:FlutterChallenge/Calculadora/componentes/button_row.dart';
 import 'package:flutter/material.dart';
 
 class Keyboard extends StatelessWidget {
-  final void Function(String command) cb;
+
+  final void Function(String command) cb;//Funcao Callback que servira para mostrar quais teclas estao sendo pressionada
 
   Keyboard(this.cb);
 

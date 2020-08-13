@@ -14,7 +14,6 @@ class _CalculatorState extends State<Calculator> {
 
   _onPressed(String text) {
     print(text);
-
     setState(() {
       memory.applyCommand(text);
     });
