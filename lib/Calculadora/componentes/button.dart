@@ -14,12 +14,10 @@ class Button extends StatelessWidget {
   /*Funcao que callback para retornar que tipo de botao foi pressionado */
   void Function(String command) cb;
 
-
   /*Construtores*/
   Button({@required this.text, this.big = false, this.color = DEFAULT, @required this.cb});
   Button.big({@required this.text, this.big = true, this.color = DEFAULT, @required this.cb});
-  Button.operation(
-      {@required this.text, this.big = false, this.color = OPERATION, @required this.cb});
+  Button.operation({@required this.text, this.big = false, this.color = OPERATION, @required this.cb});
 
   @override
   Widget build(BuildContext context) {

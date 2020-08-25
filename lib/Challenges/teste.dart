@@ -43,7 +43,7 @@ class _CurvedNavigationAppState extends State<CurvedNavigationApp> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "This is just test of Curved Navigation Bar",
+              "This is just test of Curved Navigation Ba",
               style: TextStyle(color: Colors.white),
             )
           ],

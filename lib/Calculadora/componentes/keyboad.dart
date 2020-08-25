@@ -6,7 +6,7 @@ class Keyboard extends StatelessWidget {
 
   final void Function(String command) cb;//Funcao Callback que servira para mostrar quais teclas estao sendo pressionada
 
-  Keyboard(this.cb);
+  Keyboard(this.cb); //construtor
 
   @override
   Widget build(BuildContext context) {
