@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
 //import 'Challenges/CurvedNavigation.dart';
 
 void main() {
@@ -23,6 +25,12 @@ class CurvedNavigationApp extends StatefulWidget {
 }
 
 class _CurvedNavigationAppState extends State<CurvedNavigationApp> {
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
