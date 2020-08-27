@@ -1,13 +1,10 @@
-/* App Flutter Sua primeira app Completa Video 44:59 */
-
-
-
+import 'package:FlutterChallenge/screens/BottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'Calculadora/screens/calculator.dart';
 import 'Challenges/CurvedNavigation.dart';
 
 void main() {
-  runApp(Calculator());
+  runApp(NavigationBarBeautifull());
 }
 
 class MyApp extends StatelessWidget {

@@ -13,7 +13,7 @@ class _CalculatorState extends State<Calculator> {
   final Memory memory = Memory();
 
   _onPressed(String text) {
-   // print(text);
+    // print(text);
     setState(() {
       memory.applyCommand(text);
     });
@@ -25,8 +25,9 @@ class _CalculatorState extends State<Calculator> {
       DeviceOrientation.portraitUp //Para predefinir a orientacao do dispositivo
     ]);
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Column(
-      children: <Widget>[Display(memory.value), Keyboard(_onPressed)],
-    ));
+          children: <Widget>[Display(memory.value), Keyboard(_onPressed)],
+        ));
   }
 }
