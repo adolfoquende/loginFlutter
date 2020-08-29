@@ -15,6 +15,7 @@ dependencies:
   curved_navigation_bar: #Dependencia para criar menus curvos animados
   flutter_launcher_name: ^0.0.1
   bubble_bottom_bar: ^1.2.0
+  shared_preferences: ^0.5.10
 
   flutter:
     sdk: flutter
@@ -33,6 +34,7 @@ flutter:
 
   assets:
     - assets/logo.png
+    - assets/logo2.png
 
   # example:
   # fonts:

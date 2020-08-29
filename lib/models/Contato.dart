@@ -1,5 +1,4 @@
-class Contato{
-
+class Contato {
   int id;
   String nome;
   String email;
@@ -7,10 +6,9 @@ class Contato{
 
   Contato(this.id, this.nome, this.email, this.image);
 
-  Map <String, dynamic> toMap(){
-
-    var map= <String, dynamic>{
-      'id':id,
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{
+      'id': id,
       'nome': nome,
       'email': email,
       'image': image
@@ -18,13 +16,10 @@ class Contato{
     return map;
   }
 
-
-  Contato.fromMap(Map<String,dynamic> map){
-
-    id= map['id'];
-    nome= map['nome'];
-    email= map['email'];
-    image= map['image'];
-
+  Contato.fromMap(Map<String, dynamic> map) {
+    id = map['id'];
+    nome = map['nome'];
+    email = map['email'];
+    image = map['image'];
   }
 }

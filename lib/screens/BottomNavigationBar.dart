@@ -45,12 +45,14 @@ class _NavigationBarBeautifullState extends State<NavigationBarBeautifull> {
           opacity: 0.2,
           backgroundColor: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+          //Definir aonde ficara seleciciona quando for chamado
           currentIndex: currentIndex,
           hasInk: true,
           inkColor: Colors.black12,
           hasNotch: true,
           fabLocation: BubbleBottomBarFabLocation.end,
           onTap: changePage,
+          //Seleccionando Icones
           items: <BubbleBottomBarItem>[
             BubbleBottomBarItem(
                 backgroundColor: Colors.red,
