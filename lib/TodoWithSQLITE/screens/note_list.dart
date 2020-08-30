@@ -1,16 +1,30 @@
 import 'package:FlutterChallenge/TodoWithSQLITE/screens/note_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:FlutterChallenge/TodoWithSQLITE/models/note.dart';
+import 'package:FlutterChallenge/TodoWithSQLITE/models/core/DataBaseHelperNote.dart';
 
 class NoteList extends StatefulWidget {
+  DatabaseHelperNote databaseHelperNote = DatabaseHelperNote();
+  List<Note> noteList;
+  int count;
+
   @override
   _NoteListState createState() => _NoteListState();
 }
 
 class _NoteListState extends State<NoteList> {
+  DatabaseHelperNote databaseHelperNote = DatabaseHelperNote();
+  List<Note> noteList;
   int count = 0;
 
   @override
   Widget build(BuildContext context) {
+    if (noteList == null) {
+      noteList = List<Note>();
+      updateListView();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Notes'),
@@ -27,26 +41,45 @@ class _NoteListState extends State<NoteList> {
     );
   }
 
+  void updateListView() {
+    final Future<Database> dbFuture = databaseHelperNote.initializeDatabase();
+    dbFuture.then((database) {
+      Future<List<Note>> noteListFuture = databaseHelperNote.getNoteList();
+      noteListFuture.then((noteList) {
+        setState(() {
+          this.noteList = noteList;
+          this.count = noteList.length;
+        });
+      });
+    });
+  }
+
   ListView getNotesListView() {
     TextStyle titleStyle = Theme.of(context).textTheme.subhead;
     return ListView.builder(
         itemCount: count,
-        itemBuilder: (context, index) {
+        itemBuilder: (context, position) {
           return Card(
               color: Colors.white,
               elevation: 2.0,
               child: ListTile(
                 leading: CircleAvatar(
-                    backgroundColor: Colors.yellow,
-                    child: Icon(Icons.keyboard_arrow_down)),
+                    backgroundColor:
+                        getPriorityColor(this.noteList[position].priority),
+                    child: getPriorityIcon(this.noteList[position].priority)),
                 title: Text(
-                  'Dummy title',
+                  this.noteList[position].title,
                   style: titleStyle,
                 ),
-                subtitle: Text('Dummy Date'),
-                trailing: Icon(
-                  Icons.delete,
-                  color: Colors.grey,
+                subtitle: Text(this.noteList[position].date),
+                trailing: GestureDetector(
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.grey,
+                  ),
+                  onTap: () {
+                    _delete(context, noteList[position]);
+                  },
                 ),
                 onTap: () {
                   debugPrint('');
@@ -59,5 +92,46 @@ class _NoteListState extends State<NoteList> {
   void navigateToDetail(String title) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => NoteDetail(title)));
+  }
+
+  Color getPriorityColor(int priority) {
+    switch (priority) {
+      case 1:
+        return Colors.red;
+        break;
+      case 2:
+        return Colors.yellow;
+        break;
+      default:
+        return Colors.white;
+    }
+  }
+
+  Icon getPriorityIcon(int priority) {
+    switch (priority) {
+      case 1:
+        return Icon(Icons.play_arrow);
+        break;
+      case 2:
+        return Icon(Icons.keyboard_arrow_right);
+        break;
+      default:
+        return Icon(Icons.keyboard_arrow_right);
+    }
+  }
+
+  //Funcao que apaga uma determinada nota
+  void _delete(BuildContext context, Note note) async {
+    int result = await databaseHelperNote.deleteNote(note.id);
+    if (result != 0) {
+      _showSnackBar(context, 'Note Deleted Succesfuly');
+      updateListView();
+    }
+  }
+
+  //Para mostrar a messagem quando uma nota é apaga!
+  void _showSnackBar(BuildContext context, String message) {
+    final snackBar = SnackBar(content: Text(message));
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 }

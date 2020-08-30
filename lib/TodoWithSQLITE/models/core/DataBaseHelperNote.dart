@@ -1,9 +1,6 @@
 import 'dart:io';
-
-import 'package:FlutterChallenge/models/Contato.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-
 import '../note.dart';
 
 class DatabaseHelperNote {
@@ -14,7 +11,6 @@ class DatabaseHelperNote {
   String colDescription = 'description';
   String colPriority = 'priority';
   String colDate = 'date';
-
   //Base de Dados
   Database _database;
   static DatabaseHelperNote _databaseHelper;
@@ -87,5 +83,17 @@ class DatabaseHelperNote {
     var result =
         await db.rawDelete('Delete from $noteTable where $colId = $id');
     return result;
+  }
+
+  Future<List<Note>> getNoteList() async {
+    var noteMapList = await getNoteMapList();
+    int count = noteMapList.length;
+
+    List<Note> noteList = List<Note>();
+
+    for (int i = 0; i < count; i++) {
+      noteList.add(Note.fromMap(noteMapList[i]));
+    }
+    return noteList;
   }
 }
