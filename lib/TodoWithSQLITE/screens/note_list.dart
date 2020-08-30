@@ -1,3 +1,4 @@
+import 'package:FlutterChallenge/TodoWithSQLITE/screens/note_detail.dart';
 import 'package:flutter/material.dart';
 
 class NoteList extends StatefulWidget {
@@ -18,6 +19,7 @@ class _NoteListState extends State<NoteList> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
+          navigateToDetail('Add Note');
         },
         tooltip: 'Add note', //Para mostrar notas quando pressionar lingamente
         child: Icon(Icons.add),
@@ -48,8 +50,14 @@ class _NoteListState extends State<NoteList> {
                 ),
                 onTap: () {
                   debugPrint('');
+                  navigateToDetail('Delete ');
                 },
               ));
         });
+  }
+
+  void navigateToDetail(String title) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => NoteDetail(title)));
   }
 }
