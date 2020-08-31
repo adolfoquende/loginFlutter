@@ -33,7 +33,7 @@ class _NoteListState extends State<NoteList> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
-          navigateToDetail('Add Note');
+          navigateToDetail(Note('', '', 2), 'Add Note');
         },
         tooltip: 'Add note', //Para mostrar notas quando pressionar lingamente
         child: Icon(Icons.add),
@@ -82,16 +82,19 @@ class _NoteListState extends State<NoteList> {
                   },
                 ),
                 onTap: () {
-                  debugPrint('');
-                  navigateToDetail('Delete ');
+                  debugPrint('ListTile Tapped');
+                  navigateToDetail(noteList[position], 'Edit Note');
                 },
               ));
         });
   }
 
-  void navigateToDetail(String title) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => NoteDetail(title)));
+  void navigateToDetail(Note note, String title) async {
+    bool result = await Navigator.push(context,
+        MaterialPageRoute(builder: (context) => NoteDetail(note, title)));
+    if (result == true) {
+      updateListView();
+    }
   }
 
   Color getPriorityColor(int priority) {

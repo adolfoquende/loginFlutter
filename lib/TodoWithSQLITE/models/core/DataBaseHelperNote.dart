@@ -33,6 +33,13 @@ class DatabaseHelperNote {
     }
   }
 
+  //Metodo para criar a Base de Dados
+  void _createDb(Database db, int newVersion) async {
+    await db.execute(
+        'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
+        '$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)');
+  }
+
   //Metodo para inicializar a Base de Daos
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
@@ -43,16 +50,8 @@ class DatabaseHelperNote {
     return notesDatabase;
   }
 
-  //Metodo para criar a Base de Dados
-  void _createDb(Database db, int newVersion) async {
-    await db.execute(
-        'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
-        '$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)');
-  }
-
   Future<List<Map<String, dynamic>>> getNoteMapList() async {
     Database db = await this.database;
-
     var result =
         db.rawQuery('Select * from $noteTable order by $colPriority ASC');
     return result;
@@ -88,7 +87,6 @@ class DatabaseHelperNote {
   Future<List<Note>> getNoteList() async {
     var noteMapList = await getNoteMapList();
     int count = noteMapList.length;
-
     List<Note> noteList = List<Note>();
 
     for (int i = 0; i < count; i++) {
