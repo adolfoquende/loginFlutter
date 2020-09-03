@@ -2,7 +2,7 @@ import 'package:FlutterChallenge/TodoWithSQLITE/screens/note_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:FlutterChallenge/TodoWithSQLITE/models/note.dart';
-import 'package:FlutterChallenge/TodoWithSQLITE/models/core/Db.dart';
+import 'package:FlutterChallenge/TodoWithSQLITE/models/core/DataBaseHelperNote.dart';
 
 class NoteList extends StatefulWidget {
   DatabaseHelper databaseHelperNote = DatabaseHelper();

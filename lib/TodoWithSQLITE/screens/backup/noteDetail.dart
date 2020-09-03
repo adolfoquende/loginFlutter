@@ -1,4 +1,4 @@
-import 'package:FlutterChallenge/TodoWithSQLITE/models/core/Db.dart';
+import 'package:FlutterChallenge/TodoWithSQLITE/models/core/DataBaseHelperNote.dart';
 import 'package:FlutterChallenge/TodoWithSQLITE/models/note.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
