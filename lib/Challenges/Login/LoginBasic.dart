@@ -1,6 +1,19 @@
+import 'package:FlutterChallenge/Challenges/Login/models/LoginDB.dart';
+import 'package:FlutterChallenge/Challenges/Login/models/UserModel.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController utilizadorController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
+
+  User user = User('', '');
+  LoginDB loginDB = LoginDB();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,6 +24,7 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 20, left: 40, right: 40),
           color: Colors.white,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               SizedBox(
                 width: 200,
@@ -25,6 +39,7 @@ class LoginPage extends StatelessWidget {
                 height: 10,
               ),
               TextFormField(
+                controller: utilizadorController,
                 autofocus: true,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
@@ -39,6 +54,7 @@ class LoginPage extends StatelessWidget {
                 height: 10,
               ),
               TextFormField(
+                controller: senhaController,
                 autofocus: true,
                 obscureText: true,
                 keyboardType: TextInputType.emailAddress,
@@ -97,7 +113,11 @@ class LoginPage extends StatelessWidget {
                         )
                       ],
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        login(utilizadorController.text, senhaController.text);
+                      });
+                    },
                   ),
                 ),
               ),
@@ -133,7 +153,12 @@ class LoginPage extends StatelessWidget {
                         )
                       ],
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        print(loginDB.insertUser(
+                            utilizadorController.text, senhaController.text));
+                      });
+                    },
                   ),
                 ),
               ),
@@ -155,5 +180,30 @@ class LoginPage extends StatelessWidget {
         ),
       )),
     );
+  }
+
+  void login(String username, String password) async {
+    user = await loginDB.getUser(username, password);
+    print(username + ' ' + password);
+    print(user);
+    if (user != null) {
+      /* AlertDialog alertDialog = AlertDialog(
+        title: Text("Login"),
+        content: Text('Login Sucessesful!!'),
+      );
+
+      showDialog(context: context, builder: (_) => alertDialog);*/
+
+      print('Login Com sucesso');
+    } else {
+      /* AlertDialog alertDialog = AlertDialog(
+        title: Text("Login"),
+        content: Text('Login erro'),
+      );
+
+      showDialog(context: context, builder: (_) => alertDialog);*/
+
+      print("Login sem sucesso!");
+    }
   }
 }

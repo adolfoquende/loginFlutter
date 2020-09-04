@@ -1,5 +1,5 @@
 import 'package:FlutterChallenge/Calculadora/screens/calculator.dart';
-import 'package:FlutterChallenge/Challenges/LoginBasic.dart';
+import 'file:///D:/Projectos/Flutter/FlutterChallenge/lib/Challenges/Login/LoginBasic.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 

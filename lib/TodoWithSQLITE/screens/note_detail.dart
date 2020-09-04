@@ -18,7 +18,7 @@ class _NoteDetailState extends State<NoteDetail> {
   //Nase de Dados
   DatabaseHelper databaseHelperNote = DatabaseHelper();
 
-  static var _priorities = ['Hight', 'Low'];
+  static var _priorities = ['Alta', 'Baixa'];
   String appBarTitle;
   Note note;
 
@@ -85,7 +85,7 @@ class _NoteDetailState extends State<NoteDetail> {
                       updateTitle();
                     },
                     decoration: InputDecoration(
-                        labelText: 'Title',
+                        labelText: 'Titulo',
                         labelStyle: textStyle,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
@@ -102,7 +102,7 @@ class _NoteDetailState extends State<NoteDetail> {
                       updateDescription();
                     },
                     decoration: InputDecoration(
-                        labelText: 'Description',
+                        labelText: 'Descricao',
                         labelStyle: textStyle,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
@@ -120,7 +120,7 @@ class _NoteDetailState extends State<NoteDetail> {
                           color: Theme.of(context).primaryColorDark,
                           textColor: Theme.of(context).primaryColorLight,
                           child: Text(
-                            'Save',
+                            'Salvar',
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
@@ -139,7 +139,7 @@ class _NoteDetailState extends State<NoteDetail> {
                           color: Theme.of(context).primaryColorDark,
                           textColor: Theme.of(context).primaryColorLight,
                           child: Text(
-                            'Delete',
+                            'Apagar',
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
@@ -165,10 +165,10 @@ class _NoteDetailState extends State<NoteDetail> {
 //Metodo que transforma uma prioridade String em int
   void updatePriorityAsInt(String value) {
     switch (value) {
-      case 'High':
+      case 'Alta':
         note.priority = 1;
         break;
-      case 'Low':
+      case 'Baixa':
         note.priority = 2;
         break;
     }
@@ -210,9 +210,9 @@ class _NoteDetailState extends State<NoteDetail> {
     }
 
     if (_result != 0) {
-      _showAlterDialog('Status', 'Note Saved Successfuly');
+      _showAlterDialog('Estado', 'Nota salva com sucesso');
     } else {
-      _showAlterDialog('Status', 'Problema Saving Mode');
+      _showAlterDialog('Estado', 'Houve um erro ao salvar a nota');
     }
   }
 
@@ -229,7 +229,7 @@ class _NoteDetailState extends State<NoteDetail> {
     //Case 1: if user is trying to delete the New Note i.e hr has come to
     //The detail page by pressing the FAB of NoteList page
     if (note.id == null) {
-      _showAlterDialog('Status', 'No note was delete');
+      _showAlterDialog('Estado', 'Nenhuma nota foi apagada');
       return;
     }
 
@@ -237,9 +237,9 @@ class _NoteDetailState extends State<NoteDetail> {
     int result = await databaseHelperNote.deleteNote(note.id);
 
     if (result != 0) {
-      _showAlterDialog('Status', 'Note deleted sucessfuly');
+      _showAlterDialog('Estado', 'Nota apagada com sucesso');
     } else {
-      _showAlterDialog('Status', 'Error Occured while Delecting Note');
+      _showAlterDialog('Estado', 'Ocorreu um erro ao salvar a nota');
     }
   }
 }

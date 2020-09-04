@@ -5,9 +5,10 @@ import 'package:FlutterChallenge/screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'Calculadora/screens/calculator.dart';
 import 'Challenges/CurvedNavigation.dart';
+import 'Challenges/Login/LoginBasic.dart';
 
 void main() {
-  runApp(App());
+  runApp(LoginPage());
 }
 
 class App extends StatelessWidget {
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Challenge',
-      home: NoteList(),
+      home: LoginPage(),
     );
   }
 }

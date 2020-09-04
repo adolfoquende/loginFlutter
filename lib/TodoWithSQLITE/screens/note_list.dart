@@ -27,13 +27,13 @@ class _NoteListState extends State<NoteList> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notes'),
+        title: Text('Notas'),
       ),
       body: getNotesListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
-          navigateToDetail(Note('', '', 2), 'Add Note');
+          navigateToDetail(Note('', '', 2), 'Adicionar Nota');
         },
         tooltip: 'Add note', //Para mostrar notas quando pressionar lingamente
         child: Icon(Icons.add),
@@ -83,7 +83,7 @@ class _NoteListState extends State<NoteList> {
                 ),
                 onTap: () {
                   debugPrint('ListTile Tapped');
-                  navigateToDetail(noteList[position], 'Edit Note');
+                  navigateToDetail(noteList[position], 'Editar Nota');
                 },
               ));
         });
@@ -127,7 +127,7 @@ class _NoteListState extends State<NoteList> {
   void _delete(BuildContext context, Note note) async {
     int result = await databaseHelperNote.deleteNote(note.id);
     if (result != 0) {
-      _showSnackBar(context, 'Note Deleted Succesfuly');
+      _showSnackBar(context, 'Nota apagada com sucesso');
       updateListView();
     }
   }
