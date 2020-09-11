@@ -37,15 +37,8 @@ class LoginDB {
     await db.execute('create table $nameTable($colUser Text, $colPass Text)');
   }
 
-  Future<List<Map<String, dynamic>>> getUserMapList() async {
-    Database db = await this.database;
-    var result = db.rawQuery('Select * from $nameTable');
-    return result;
-  }
-
   Future<List<Map<String, dynamic>>> getUsers() async {
     Database db = await this.database;
-
     var result = db.rawQuery('Select * from $nameTable');
     return result;
   }
