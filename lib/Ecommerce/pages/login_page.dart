@@ -1,23 +1,28 @@
-import 'package:FlutterChallenge/Ecommerce/pages/login_page.dart';
+import 'package:FlutterChallenge/Ecommerce/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
-import 'login_page.dart';
-
-class RegisterPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  //Variavel que controla as chaves de um widget Form
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String _username, _email, _password;
+
+  void _login() {
+    print('Fazendo login!!');
+
+    if (_formKey.currentState.validate()) {
+      print('Dados validos');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title: Text('Login'),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -57,28 +62,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   Padding(
                     padding: EdgeInsets.only(top: 20.0),
                     child: TextFormField(
-                      //Verifica se nao tem o simbolo '@' e retorna a mensagem
-                      validator: (val) =>
-                          !val.contains('@') ? 'This email is not valid' : null,
-
-                      onSaved: (val) => _email = val,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Email',
-                          hintText: 'Enter a valid email',
-                          icon: Icon(
-                            Icons.email,
-                            color: Colors.grey,
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: TextFormField(
                       //Verifica o tamanho da palavra passe com base um teste condicional
                       validator: (val) =>
                           val.length < 6 ? 'Username too short' : null,
-
                       onSaved: (val) => _password = val,
                       obscureText: true,
                       decoration: InputDecoration(
@@ -96,8 +82,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Column(
                       children: <Widget>[
                         RaisedButton(
-                          onPressed: _submit,
-                          child: Text('Submit'),
+                          onPressed: _login,
+                          child: Text('LOGIN'),
                           elevation: 28.0,
                           shape: RoundedRectangleBorder(
                               borderRadius:
@@ -105,11 +91,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Theme.of(context).primaryColor,
                         ),
                         FlatButton(
-                          child: Text('Have you acount? Login'),
+                          child: Text('Create a count'),
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginPage())),
+                                  builder: (context) => RegisterPage())),
                         )
                       ],
                     ),
@@ -121,18 +107,5 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
-  }
-
-  void _submit() {
-    final form = _formKey.currentState;
-
-    //Verifica se o estado actual esta sendo validado
-    if (_formKey.currentState.validate()) {
-      //form.save();
-      print('correct data!!!!');
-      print('Name: $_username\nEmail: $_email\nPassword: $_password');
-    } else {
-      print('Erro in your data!!!!');
-    }
   }
 }
